@@ -1,49 +1,50 @@
 import React, { useState, useEffect } from 'react';
 
-// Image constants - Ready for local images (structure created in public/images/)
-// Current: Using reliable external URLs until you add your actual brand assets
-// To use your own images: Add files to public/images/ and uncomment the local paths below
-const imgImage0011 = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=StickerGiant+Logo"; // "/images/logo.png"
-const imgGenerateAnImageOfAHandHoldingAnArrayOfStickersFannedOutLikeCardsWithFreshCoolImagesAndTypographiesMakeItOnAWhiteBackground = "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600&h=400&fit=crop&crop=center";
-const imgKey1 = "https://via.placeholder.com/60x50/4A90E2/FFFFFF?text=Service"; // "/images/service-icon.png"
-const imgKey2 = "https://via.placeholder.com/60x50/7ED321/FFFFFF?text=Custom"; // "/images/custom-icon.png"
-const imgKey3 = "https://via.placeholder.com/60x50/F5A623/FFFFFF?text=Quality"; // "/images/quality-icon.png"
-const imgPhotoOfATableFullOfJarsForCandiesAndCbdBudsProductsWithFunQuirkyLabelsLikeSourAlienDieselAndBlueberryKushShowingColorfulCartoonyAnimalsAndAliensAndFruit = "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=800&fit=crop&crop=center";
-const imgProductInfoCardLgMd = "https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800&h=600&fit=crop&crop=center";
-const imgRow = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=400&fit=crop&crop=center";
-const imgMakeATextureLikeAHologramOnABlackBackground = "https://via.placeholder.com/100x100/333333/FFFFFF?text=Glow"; // "/images/glow-material.png"
-const imgMakeATextureLikeAHologramOnABlackBackground1 = "https://via.placeholder.com/100x100/FFD700/000000?text=Glitter"; // "/images/glitter-material.png"
-const imgMakeATextureLikeAHologramOnABlackBackground2 = "https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=Holo"; // "/images/holographic-material.png"
-const imgMakeATextureLikeAHologramOnABlackBackground3 = "https://via.placeholder.com/100x100/E0E0E0/000000?text=Clear"; // "/images/clear-material.png"
-const imgImageContainer = "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=720&h=720&fit=crop&crop=center";
-const img5 = "https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Blog+1"; // "/images/blog-1.jpg"
-const img6 = "https://via.placeholder.com/200x200/7ED321/FFFFFF?text=Blog+2"; // "/images/blog-2.jpg"
-const img7 = "https://via.placeholder.com/200x200/F5A623/FFFFFF?text=Blog+3"; // "/images/blog-3.jpg"
-const imgSatisfactionGuaranteed150PxPng = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=Satisfaction+Guaranteed"; // "/images/satisfaction-guaranteed.png"
-const imgEveryStickerHasAStory350PxPng = "https://via.placeholder.com/350x75/FFFFFF/000000?text=Every+Sticker+Has+A+Story"; // "/images/every-sticker-story.png"
+// Image constants - using your actual Figma images hosted locally
+// These are the original images from your Figma design, now properly hosted
+const imgImage0011 = "/images/brand/stickergiant-logo.png"; // StickerGiant logo from Figma
+const imgGenerateAnImageOfAHandHoldingAnArrayOfStickersFannedOutLikeCardsWithFreshCoolImagesAndTypographiesMakeItOnAWhiteBackground = "/images/hero/hand-holding-stickers.png"; // Hero image from Figma
+const imgKey1 = "/images/features/superior-service.png"; // Superior Service icon from Figma
+const imgKey2 = "/images/features/simple-customization.png"; // Simple Customization icon from Figma
+const imgKey3 = "/images/features/exceptional-quality.png"; // Exceptional Quality icon from Figma
+const imgPhotoOfATableFullOfJarsForCandiesAndCbdBudsProductsWithFunQuirkyLabelsLikeSourAlienDieselAndBlueberryKushShowingColorfulCartoonyAnimalsAndAliensAndFruit = "/images/collections/cannabis-collection.png"; // Cannabis collection from Figma
+const imgProductInfoCardLgMd = "/images/collections/brewery-collection.png"; // Brewery collection from Figma
+const imgRow = "/images/collections/cafe-collection.png"; // Cafe collection from Figma
+const imgMakeATextureLikeAHologramOnABlackBackground = "/images/materials/glow-in-dark.png"; // Glow in dark material from Figma
+const imgMakeATextureLikeAHologramOnABlackBackground1 = "/images/materials/glitter.png"; // Glitter material from Figma
+const imgMakeATextureLikeAHologramOnABlackBackground2 = "/images/materials/holographic.png"; // Holographic material from Figma
+const imgMakeATextureLikeAHologramOnABlackBackground3 = "/images/materials/clear.png"; // Clear material from Figma
+const imgImageContainer = "/images/materials/showcase-container.png"; // Material showcase container from Figma
+const img5 = "/images/blog/article-1.png"; // Blog article 1 from Figma
+const img6 = "/images/blog/article-2.png"; // Blog article 2 from Figma  
+const img7 = "/images/blog/article-3.png"; // Blog article 3 from Figma
+const imgSatisfactionGuaranteed150PxPng = "/images/brand/satisfaction-guaranteed.png"; // Satisfaction guarantee badge from Figma
+const imgEveryStickerHasAStory350PxPng = "/images/brand/every-sticker-story.png"; // Brand story logo from Figma
+const imgHandHoldingAToGoCoffeeCupWithAMoonCityCoffeeDieCutStickerPrintedByStickerGiantAppliedToTheSide = "/images/hero/coffee-cup-sticker.png"; // Coffee cup sticker from Figma
 
-// SVG icon placeholders - using simple data URIs
-const img = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E";
-const img1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E";
-const imgShape = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23000'%3E%3Cpath d='M16 0L20 12H32L24 20L28 32L16 24L4 32L8 20L0 12H12L16 0Z'/%3E%3C/svg%3E";
-const imgPolygon1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 12'%3E%3Cpath d='M0 0L12 12L24 0Z' fill='%231f2a37'/%3E%3C/svg%3E";
-const imgOiDoubleQuoteSerifLeft = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 17h3l2-4V7H5v6h3M17 17h3l2-4V7h-6v6h3' fill='%23666'/%3E%3C/svg%3E";
-const imgIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23666'/%3E%3C/svg%3E";
-const imgIcon1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' fill='%23666'/%3E%3C/svg%3E";
-const imgIcon2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 13 15.5l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' fill='%23666'/%3E%3C/svg%3E";
-const imgIcon3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z' fill='%23666'/%3E%3C/svg%3E";
-const imgIcon4 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' fill='%23666'/%3E%3C/svg%3E";
-const img2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c1.1 0 2 .9 2 2 0 .74-.4 1.38-1 1.73v.27h1c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h1v-.27c-.6-.35-1-.99-1-1.73 0-1.1.9-2 2-2z' fill='%23383839'/%3E%3C/svg%3E";
-const img3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79c-1.73.84-2.84 2.6-2.84 4.58 0 2.76 2.24 5 5 5 1.78 0 3.37-.81 4.42-2.08L20 21.84l1.41-1.41L6.76 4.84zM12 9c.83 0 1.5.67 1.5 1.5 0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5c0-.83.67-1.5 1.5-1.5z' fill='%23383839'/%3E%3C/svg%3E";
-const img4 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16.5V16H7.5V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z' fill='%23383839'/%3E%3C/svg%3E";
-const imgSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' fill='%23000'/%3E%3C/svg%3E";
-const imgSvg1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z' fill='%23fff'/%3E%3C/svg%3E";
-const imgIcon5 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M24 4.56c-.88.39-1.83.65-2.83.77 1.02-.61 1.8-1.58 2.17-2.73-.95.56-2.01.97-3.13 1.19-.9-.96-2.18-1.56-3.59-1.56-2.72 0-4.92 2.2-4.92 4.92 0 .39.04.76.13 1.12-4.08-.2-7.7-2.16-10.12-5.13-.42.73-.67 1.58-.67 2.48 0 1.7.87 3.21 2.19 4.09-.81-.03-1.57-.25-2.23-.62v.06c0 2.39 1.7 4.38 3.95 4.83-.41.11-.85.17-1.29.17-.32 0-.63-.03-.93-.08.63 1.96 2.45 3.39 4.6 3.43-1.69 1.32-3.82 2.11-6.14 2.11-.4 0-.79-.02-1.17-.07 2.18 1.4 4.77 2.21 7.55 2.21 9.06 0 14.01-7.5 14.01-14.01 0-.21 0-.42-.01-.63.96-.69 1.8-1.56 2.46-2.55z' fill='%234A90E2'/%3E%3C/svg%3E";
-const imgIcon6 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M24 12.07C24 5.41 18.63.07 12 .07S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.48 0-1.94.93-1.94 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07' fill='%234267B2'/%3E%3C/svg%3E";
-const imgIcon7 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.69-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.77.26.26 2.77.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.19 4.28 2.7 6.79 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.28-.19 6.79-2.7 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.74 2.77 21.23.26 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z' fill='%23E4405F'/%3E%3C/svg%3E";
-const imgIcon8 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.45 7.32c-.03-.12-.06-.25-.1-.37-.23-1.61-1.09-2.85-2.7-3.09C15.88 3.66 12 3.66 12 3.66s-3.88 0-5.65.2c-1.61.24-2.47 1.48-2.7 3.09-.04.12-.07.25-.1.37C3.34 9.07 3.34 12 3.34 12s0 2.93.21 4.68c.03.12.06.25.1.37.23 1.61 1.09 2.85 2.7 3.09C8.12 20.34 12 20.34 12 20.34s3.88 0 5.65-.2c1.61-.24 2.47-1.48 2.7-3.09.04-.12.07-.25.1-.37.21-1.75.21-4.68.21-4.68s0-2.93-.21-4.68zM9.9 15.17V8.83L15.82 12 9.9 15.17z' fill='%23FF0000'/%3E%3C/svg%3E";
-const imgIcon9 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.32 6.21c-.16-.77-.63-1.35-1.23-1.46C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.09.25c-.6.11-1.07.69-1.23 1.46C3.5 7.6 3.5 10.5 3.5 10.5s0 2.9.18 4.29c.16.77.63 1.35 1.23 1.46 1.39.25 7.09.25 7.09.25s5.7 0 7.09-.25c.6-.11 1.07-.69 1.23-1.46.18-1.39.18-4.29.18-4.29s0-2.9-.18-4.29zM9.75 13.5V7.5L15.5 10.5l-5.75 3z' fill='%235865F2'/%3E%3C/svg%3E";
-const imgIcon10 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.9 8.1c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4H6.6c-.4 0-.8.1-1.1.4-.3.3-.4.7-.4 1.1v7.8c0 .4.1.8.4 1.1.3.3.7.4 1.1.4h10.8c.4 0 .8-.1 1.1-.4.3-.3.4-.7.4-1.1V8.1zm-1.5 3.9l-5.4 2.7V9.3l5.4 2.7z' fill='%230A66C2'/%3E%3C/svg%3E";
+// SVG icon constants - using your actual Figma SVG files hosted locally
+const img = "/images/icons/star.svg"; // Star icon from Figma
+const img1 = "/images/icons/star-large.svg"; // Star icon large from Figma
+const imgShape = "/images/icons/trustpilot-logo.svg"; // Trustpilot logo from Figma
+const imgPolygon1 = "/images/icons/tooltip-arrow.svg"; // Tooltip arrow from Figma
+const imgOiDoubleQuoteSerifLeft = "/images/icons/quote.svg"; // Quote icon from Figma
+const imgIcon = "/images/icons/chevron-down.svg"; // Chevron down from Figma
+const imgIcon1 = "/images/icons/menu.svg"; // Menu icon from Figma
+const imgIcon2 = "/images/icons/search.svg"; // Search icon from Figma
+const imgIcon3 = "/images/icons/shopping-cart.svg"; // Shopping cart from Figma
+const imgIcon4 = "/images/icons/user.svg"; // User icon from Figma
+const img2 = "/images/icons/droplet.svg"; // Droplet icon from Figma
+const img3 = "/images/icons/sun.svg"; // Sun icon from Figma
+const img4 = "/images/icons/shield.svg"; // Shield icon from Figma
+const imgSvg = "/images/icons/email.svg"; // Email icon from Figma
+const imgSvg1 = "/images/icons/arrow-up.svg"; // Arrow up from Figma
+const imgIcon5 = "/images/icons/twitter.svg"; // Twitter from Figma
+const imgIcon6 = "/images/icons/facebook.svg"; // Facebook from Figma
+const imgIcon7 = "/images/icons/instagram.svg"; // Instagram from Figma
+const imgIcon8 = "/images/icons/youtube.svg"; // YouTube from Figma
+const imgIcon9 = "/images/icons/discord.svg"; // Discord from Figma
+const imgIcon10 = "/images/icons/linkedin.svg"; // LinkedIn from Figma
+const imgVector2 = "/images/icons/arrow-shape.svg"; // Arrow shape from Figma
 
 
 // Component interfaces
@@ -288,7 +289,7 @@ function Navigation() {
       }`}
     >
       {/* Announcement Bar */}
-      <div className="bg-[#4d4d4f] box-border content-stretch flex flex-row gap-2 items-center justify-center overflow-clip pb-2 pt-12 px-6 relative shrink-0 w-full">
+              <div className="bg-[#4d4d4f] box-border content-stretch flex flex-row gap-2 items-center justify-center overflow-clip pb-2 pt-4 px-6 relative shrink-0 w-full">
         <div className="basis-0 font-['Roboto_Condensed:Regular',_sans-serif] font-normal grow leading-[0] min-h-px min-w-px relative shrink-0 text-[#ffffff] text-[16px] text-center">
           <p className="block leading-[1.4]">
             New Pet Backing available for Matte & Glossy Labels!
