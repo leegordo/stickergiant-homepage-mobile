@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
-// Image constants - using placeholder images and web-safe URLs
-const imgImage0011 = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=StickerGiant+Logo";
+// Image constants - Ready for local images (structure created in public/images/)
+// Current: Using reliable external URLs until you add your actual brand assets
+// To use your own images: Add files to public/images/ and uncomment the local paths below
+const imgImage0011 = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=StickerGiant+Logo"; // "/images/logo.png"
 const imgGenerateAnImageOfAHandHoldingAnArrayOfStickersFannedOutLikeCardsWithFreshCoolImagesAndTypographiesMakeItOnAWhiteBackground = "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600&h=400&fit=crop&crop=center";
-const imgKey1 = "https://via.placeholder.com/60x50/4A90E2/FFFFFF?text=Service";
-const imgKey2 = "https://via.placeholder.com/60x50/7ED321/FFFFFF?text=Custom";
-const imgKey3 = "https://via.placeholder.com/60x50/F5A623/FFFFFF?text=Quality";
+const imgKey1 = "https://via.placeholder.com/60x50/4A90E2/FFFFFF?text=Service"; // "/images/service-icon.png"
+const imgKey2 = "https://via.placeholder.com/60x50/7ED321/FFFFFF?text=Custom"; // "/images/custom-icon.png"
+const imgKey3 = "https://via.placeholder.com/60x50/F5A623/FFFFFF?text=Quality"; // "/images/quality-icon.png"
 const imgPhotoOfATableFullOfJarsForCandiesAndCbdBudsProductsWithFunQuirkyLabelsLikeSourAlienDieselAndBlueberryKushShowingColorfulCartoonyAnimalsAndAliensAndFruit = "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=800&fit=crop&crop=center";
 const imgProductInfoCardLgMd = "https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800&h=600&fit=crop&crop=center";
 const imgRow = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=400&fit=crop&crop=center";
-const imgMakeATextureLikeAHologramOnABlackBackground = "https://via.placeholder.com/100x100/333333/FFFFFF?text=Glow";
-const imgMakeATextureLikeAHologramOnABlackBackground1 = "https://via.placeholder.com/100x100/FFD700/000000?text=Glitter";
-const imgMakeATextureLikeAHologramOnABlackBackground2 = "https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=Holo";
-const imgMakeATextureLikeAHologramOnABlackBackground3 = "https://via.placeholder.com/100x100/E0E0E0/000000?text=Clear";
+const imgMakeATextureLikeAHologramOnABlackBackground = "https://via.placeholder.com/100x100/333333/FFFFFF?text=Glow"; // "/images/glow-material.png"
+const imgMakeATextureLikeAHologramOnABlackBackground1 = "https://via.placeholder.com/100x100/FFD700/000000?text=Glitter"; // "/images/glitter-material.png"
+const imgMakeATextureLikeAHologramOnABlackBackground2 = "https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=Holo"; // "/images/holographic-material.png"
+const imgMakeATextureLikeAHologramOnABlackBackground3 = "https://via.placeholder.com/100x100/E0E0E0/000000?text=Clear"; // "/images/clear-material.png"
 const imgImageContainer = "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=720&h=720&fit=crop&crop=center";
-const img5 = "https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Blog+1";
-const img6 = "https://via.placeholder.com/200x200/7ED321/FFFFFF?text=Blog+2";
-const img7 = "https://via.placeholder.com/200x200/F5A623/FFFFFF?text=Blog+3";
-const imgSatisfactionGuaranteed150PxPng = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=Satisfaction+Guaranteed";
-const imgEveryStickerHasAStory350PxPng = "https://via.placeholder.com/350x75/FFFFFF/000000?text=Every+Sticker+Has+A+Story";
+const img5 = "https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Blog+1"; // "/images/blog-1.jpg"
+const img6 = "https://via.placeholder.com/200x200/7ED321/FFFFFF?text=Blog+2"; // "/images/blog-2.jpg"
+const img7 = "https://via.placeholder.com/200x200/F5A623/FFFFFF?text=Blog+3"; // "/images/blog-3.jpg"
+const imgSatisfactionGuaranteed150PxPng = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=Satisfaction+Guaranteed"; // "/images/satisfaction-guaranteed.png"
+const imgEveryStickerHasAStory350PxPng = "https://via.placeholder.com/350x75/FFFFFF/000000?text=Every+Sticker+Has+A+Story"; // "/images/every-sticker-story.png"
 
 // SVG icon placeholders - using simple data URIs
 const img = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E";
