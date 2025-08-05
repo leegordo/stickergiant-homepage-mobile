@@ -1,45 +1,47 @@
 import React, { useState, useEffect } from 'react';
 
-// Image constants from Figma
-const imgImage0011 = "http://localhost:3845/assets/03e88ece3e6f92ec8bd37715933b78819c091571.png";
-const imgGenerateAnImageOfAHandHoldingAnArrayOfStickersFannedOutLikeCardsWithFreshCoolImagesAndTypographiesMakeItOnAWhiteBackground = "http://localhost:3845/assets/cb45312f8fdbce2ef5a415cd640f17b61ac9fbec.png";
-const imgKey1 = "http://localhost:3845/assets/a0ab28c68b78ee2ffe62c00744f441ae3dbba87a.png";
-const imgKey2 = "http://localhost:3845/assets/7d826fb2af589afae1c55e008e3eaa5a122d5838.png";
-const imgKey3 = "http://localhost:3845/assets/4e92c4fedb863b36903eff3fd96cb631c5382741.png";
-const imgPhotoOfATableFullOfJarsForCandiesAndCbdBudsProductsWithFunQuirkyLabelsLikeSourAlienDieselAndBlueberryKushShowingColorfulCartoonyAnimalsAndAliensAndFruit = "http://localhost:3845/assets/5197f000e4657fef7f567d2e2765a65feb9b1763.png";
-const imgProductInfoCardLgMd = "http://localhost:3845/assets/7b1363911d2988f6c11681a604131a52f89e08a3.png";
-const imgRow = "http://localhost:3845/assets/86e4a1c93070aa1e2553e0b49ab3e03a91f67a68.png";
-const imgMakeATextureLikeAHologramOnABlackBackground = "http://localhost:3845/assets/0bfcf9da3e43ebdfcf86d27182df6b8ef419785a.png";
-const imgMakeATextureLikeAHologramOnABlackBackground1 = "http://localhost:3845/assets/0001d536e357f9d15b70ec91452fe042a56cae04.png";
-const imgMakeATextureLikeAHologramOnABlackBackground2 = "http://localhost:3845/assets/3de6c0912f62de8970ab67db9302acbd6999e6a5.png";
-const imgMakeATextureLikeAHologramOnABlackBackground3 = "http://localhost:3845/assets/7b31a669a3b99752ac4f05981351e0ab85d27b10.png";
-const imgImageContainer = "http://localhost:3845/assets/c86e9b0da0f8774a9e083fd53edfee15d7d41a28.png";
-const img5 = "http://localhost:3845/assets/9f83efc251bdcd58acab3f0409bfe15f99eabc94.png";
-const img6 = "http://localhost:3845/assets/dc48d483c2133ff5be271930827bc18f88619385.png";
-const img7 = "http://localhost:3845/assets/7d9bd87944ea714a2202493fe2783ebfa1e755a4.png";
-const imgSatisfactionGuaranteed150PxPng = "http://localhost:3845/assets/f05de3166898487f6041a01acc1b5e37a518198f.png";
-const imgEveryStickerHasAStory350PxPng = "http://localhost:3845/assets/efc9bbf9674e628ae0ca280b4caa3b75e8db3e0d.png";
-const img = "http://localhost:3845/assets/73d5b13347ed85db82169a651fbeda99834beb96.svg";
-const img1 = "http://localhost:3845/assets/ccdead16986336e4a0cdd569518f2dd34cd3c506.svg";
-const imgShape = "http://localhost:3845/assets/8d4d5a1e29af6224466db3a9ff6be3cf94782d62.svg";
-const imgPolygon1 = "http://localhost:3845/assets/80fde928db3dba4019015a5bced585af6a76ee9e.svg";
-const imgOiDoubleQuoteSerifLeft = "http://localhost:3845/assets/d54b8739fb91076a45931e2c18542a295f07d84a.svg";
-const imgIcon = "http://localhost:3845/assets/c6be47d59b294ee161bb2b8a5a7e06462f98d4c3.svg";
-const imgIcon1 = "http://localhost:3845/assets/9c7eac17fddcd7ea5c8b232c296752d7271da4c1.svg";
-const imgIcon2 = "http://localhost:3845/assets/956cbbddf9b129d6836d9b5bf46d9d5715ce8faf.svg";
-const imgIcon3 = "http://localhost:3845/assets/d43a0db3041f240ac336b055b11aa602fdb0de94.svg";
-const imgIcon4 = "http://localhost:3845/assets/eaabb68c96c1d6f7def7c7fa071e8ba7c29a13f7.svg";
-const img2 = "http://localhost:3845/assets/384ba08dbc32ce652268c97ad2230b72fe8df790.svg";
-const img3 = "http://localhost:3845/assets/61457940f7c62b7d5b06eeb2f7ff7d74dee28e62.svg";
-const img4 = "http://localhost:3845/assets/e7b051882610c9aa44fc7b21b5e57702f53cf616.svg";
-const imgSvg = "http://localhost:3845/assets/f6a5929e30256351a3dacacde11428e96c049595.svg";
-const imgSvg1 = "http://localhost:3845/assets/45580883d036da82eff705526dad391efd0827db.svg";
-const imgIcon5 = "http://localhost:3845/assets/c52e4f983e2a1bef9c4945845be9b757dfd8793f.svg";
-const imgIcon6 = "http://localhost:3845/assets/4bc72de1af904aa052482c9b42bb0474e8697afa.svg";
-const imgIcon7 = "http://localhost:3845/assets/bbcf57591c6303575e82642e5d98d5f0afb29a4b.svg";
-const imgIcon8 = "http://localhost:3845/assets/e8d8a83cf69b0c9a05c0c2aa59281495c5681f5d.svg";
-const imgIcon9 = "http://localhost:3845/assets/082b1c8dd0751f94ed74a67cba36183b7dc19294.svg";
-const imgIcon10 = "http://localhost:3845/assets/055e30e8403db36dcebe2d5098113ff2c602bded.svg";
+// Image constants - using placeholder images and web-safe URLs
+const imgImage0011 = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=StickerGiant+Logo";
+const imgGenerateAnImageOfAHandHoldingAnArrayOfStickersFannedOutLikeCardsWithFreshCoolImagesAndTypographiesMakeItOnAWhiteBackground = "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600&h=400&fit=crop&crop=center";
+const imgKey1 = "https://via.placeholder.com/60x50/4A90E2/FFFFFF?text=Service";
+const imgKey2 = "https://via.placeholder.com/60x50/7ED321/FFFFFF?text=Custom";
+const imgKey3 = "https://via.placeholder.com/60x50/F5A623/FFFFFF?text=Quality";
+const imgPhotoOfATableFullOfJarsForCandiesAndCbdBudsProductsWithFunQuirkyLabelsLikeSourAlienDieselAndBlueberryKushShowingColorfulCartoonyAnimalsAndAliensAndFruit = "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=800&fit=crop&crop=center";
+const imgProductInfoCardLgMd = "https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800&h=600&fit=crop&crop=center";
+const imgRow = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=400&fit=crop&crop=center";
+const imgMakeATextureLikeAHologramOnABlackBackground = "https://via.placeholder.com/100x100/333333/FFFFFF?text=Glow";
+const imgMakeATextureLikeAHologramOnABlackBackground1 = "https://via.placeholder.com/100x100/FFD700/000000?text=Glitter";
+const imgMakeATextureLikeAHologramOnABlackBackground2 = "https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=Holo";
+const imgMakeATextureLikeAHologramOnABlackBackground3 = "https://via.placeholder.com/100x100/E0E0E0/000000?text=Clear";
+const imgImageContainer = "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=720&h=720&fit=crop&crop=center";
+const img5 = "https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Blog+1";
+const img6 = "https://via.placeholder.com/200x200/7ED321/FFFFFF?text=Blog+2";
+const img7 = "https://via.placeholder.com/200x200/F5A623/FFFFFF?text=Blog+3";
+const imgSatisfactionGuaranteed150PxPng = "https://via.placeholder.com/150x100/BB3526/FFFFFF?text=Satisfaction+Guaranteed";
+const imgEveryStickerHasAStory350PxPng = "https://via.placeholder.com/350x75/FFFFFF/000000?text=Every+Sticker+Has+A+Story";
+
+// SVG icon placeholders - using simple data URIs
+const img = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E";
+const img1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E";
+const imgShape = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23000'%3E%3Cpath d='M16 0L20 12H32L24 20L28 32L16 24L4 32L8 20L0 12H12L16 0Z'/%3E%3C/svg%3E";
+const imgPolygon1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 12'%3E%3Cpath d='M0 0L12 12L24 0Z' fill='%231f2a37'/%3E%3C/svg%3E";
+const imgOiDoubleQuoteSerifLeft = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 17h3l2-4V7H5v6h3M17 17h3l2-4V7h-6v6h3' fill='%23666'/%3E%3C/svg%3E";
+const imgIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23666'/%3E%3C/svg%3E";
+const imgIcon1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' fill='%23666'/%3E%3C/svg%3E";
+const imgIcon2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 13 15.5l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' fill='%23666'/%3E%3C/svg%3E";
+const imgIcon3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2z' fill='%23666'/%3E%3C/svg%3E";
+const imgIcon4 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' fill='%23666'/%3E%3C/svg%3E";
+const img2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c1.1 0 2 .9 2 2 0 .74-.4 1.38-1 1.73v.27h1c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h1v-.27c-.6-.35-1-.99-1-1.73 0-1.1.9-2 2-2z' fill='%23383839'/%3E%3C/svg%3E";
+const img3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79c-1.73.84-2.84 2.6-2.84 4.58 0 2.76 2.24 5 5 5 1.78 0 3.37-.81 4.42-2.08L20 21.84l1.41-1.41L6.76 4.84zM12 9c.83 0 1.5.67 1.5 1.5 0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5c0-.83.67-1.5 1.5-1.5z' fill='%23383839'/%3E%3C/svg%3E";
+const img4 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16.5V16H7.5V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z' fill='%23383839'/%3E%3C/svg%3E";
+const imgSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' fill='%23000'/%3E%3C/svg%3E";
+const imgSvg1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z' fill='%23fff'/%3E%3C/svg%3E";
+const imgIcon5 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M24 4.56c-.88.39-1.83.65-2.83.77 1.02-.61 1.8-1.58 2.17-2.73-.95.56-2.01.97-3.13 1.19-.9-.96-2.18-1.56-3.59-1.56-2.72 0-4.92 2.2-4.92 4.92 0 .39.04.76.13 1.12-4.08-.2-7.7-2.16-10.12-5.13-.42.73-.67 1.58-.67 2.48 0 1.7.87 3.21 2.19 4.09-.81-.03-1.57-.25-2.23-.62v.06c0 2.39 1.7 4.38 3.95 4.83-.41.11-.85.17-1.29.17-.32 0-.63-.03-.93-.08.63 1.96 2.45 3.39 4.6 3.43-1.69 1.32-3.82 2.11-6.14 2.11-.4 0-.79-.02-1.17-.07 2.18 1.4 4.77 2.21 7.55 2.21 9.06 0 14.01-7.5 14.01-14.01 0-.21 0-.42-.01-.63.96-.69 1.8-1.56 2.46-2.55z' fill='%234A90E2'/%3E%3C/svg%3E";
+const imgIcon6 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M24 12.07C24 5.41 18.63.07 12 .07S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.48 0-1.94.93-1.94 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07' fill='%234267B2'/%3E%3C/svg%3E";
+const imgIcon7 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.69-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.77.26.26 2.77.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.19 4.28 2.7 6.79 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.28-.19 6.79-2.7 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.74 2.77 21.23.26 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z' fill='%23E4405F'/%3E%3C/svg%3E";
+const imgIcon8 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.45 7.32c-.03-.12-.06-.25-.1-.37-.23-1.61-1.09-2.85-2.7-3.09C15.88 3.66 12 3.66 12 3.66s-3.88 0-5.65.2c-1.61.24-2.47 1.48-2.7 3.09-.04.12-.07.25-.1.37C3.34 9.07 3.34 12 3.34 12s0 2.93.21 4.68c.03.12.06.25.1.37.23 1.61 1.09 2.85 2.7 3.09C8.12 20.34 12 20.34 12 20.34s3.88 0 5.65-.2c1.61-.24 2.47-1.48 2.7-3.09.04-.12.07-.25.1-.37.21-1.75.21-4.68.21-4.68s0-2.93-.21-4.68zM9.9 15.17V8.83L15.82 12 9.9 15.17z' fill='%23FF0000'/%3E%3C/svg%3E";
+const imgIcon9 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.32 6.21c-.16-.77-.63-1.35-1.23-1.46C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.09.25c-.6.11-1.07.69-1.23 1.46C3.5 7.6 3.5 10.5 3.5 10.5s0 2.9.18 4.29c.16.77.63 1.35 1.23 1.46 1.39.25 7.09.25 7.09.25s5.7 0 7.09-.25c.6-.11 1.07-.69 1.23-1.46.18-1.39.18-4.29.18-4.29s0-2.9-.18-4.29zM9.75 13.5V7.5L15.5 10.5l-5.75 3z' fill='%235865F2'/%3E%3C/svg%3E";
+const imgIcon10 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.9 8.1c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4H6.6c-.4 0-.8.1-1.1.4-.3.3-.4.7-.4 1.1v7.8c0 .4.1.8.4 1.1.3.3.7.4 1.1.4h10.8c.4 0 .8-.1 1.1-.4.3-.3.4-.7.4-1.1V8.1zm-1.5 3.9l-5.4 2.7V9.3l5.4 2.7z' fill='%230A66C2'/%3E%3C/svg%3E";
 
 
 // Component interfaces
