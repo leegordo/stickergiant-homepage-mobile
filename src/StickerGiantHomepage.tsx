@@ -188,12 +188,48 @@ function ChevronDown({ size = "20" }: ChevronDownProps) {
 }
 
 // Icon components
-function MenuIcon() {
+function MenuIcon({ onClick }: { onClick?: () => void }) {
   return (
-    <div className="relative size-full">
+    <div className="relative size-full cursor-pointer" onClick={onClick}>
       <div className="absolute bottom-1/4 left-[12.5%] right-[12.5%] top-1/4">
         <div className="absolute inset-[-10.42%_-6.94%]">
           <img alt="menu" className="block max-w-none size-full" src={imgIcon1} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CloseIcon({ onClick }: { onClick?: () => void }) {
+  return (
+    <div className="relative size-full cursor-pointer" onClick={onClick}>
+      <div className="absolute inset-1/4">
+        <div className="absolute inset-[-10.417%]">
+          <img alt="close" className="block max-w-none size-full" src="/images/icons/close.svg" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <div className="relative size-full">
+      <div className="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4">
+        <div className="absolute inset-[-10%_-20%]">
+          <img alt="chevron right" className="block max-w-none size-full" src="/images/icons/chevron-right.svg" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChevronLeftIcon({ onClick }: { onClick?: () => void }) {
+  return (
+    <div className="relative size-full" onClick={onClick}>
+      <div className="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4">
+        <div className="absolute inset-[-10%_-20%] transform rotate-180">
+          <img alt="chevron left" className="block max-w-none size-full" src="/images/icons/chevron-right.svg" />
         </div>
       </div>
     </div>
@@ -236,10 +272,215 @@ function UserIcon() {
   );
 }
 
+// Hamburger Menu Component
+function HamburgerMenu({ isOpen, onClose, onAllProductsClick }: { isOpen: boolean; onClose: () => void; onAllProductsClick: () => void }) {
+  return (
+    <>
+      {/* Menu Panel - Full Screen with Solid White Background */}
+      <div 
+        className={`fixed inset-0 w-screen h-screen bg-[#ffffff] z-[9999] transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        style={{ backgroundColor: '#ffffff' }}
+      >
+        {/* Header */}
+        <div className="bg-[#fff] flex flex-row items-center justify-end overflow-clip pb-0 pt-12 px-[13px] w-full">
+          <div className="flex flex-row gap-4 items-center justify-start p-0">
+            <div className="overflow-clip size-6">
+              <CloseIcon onClick={onClose} />
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-col gap-2 items-start justify-start pb-0 pt-6 px-6 w-full">
+          {/* Main Categories */}
+          <div className="flex flex-row items-center justify-start p-0 w-full">
+            <div className="flex flex-col gap-2 items-start justify-center p-0">
+              <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+                <div className="font-['Roboto_Condensed:Regular',_sans-serif] font-normal text-[#383839] text-[32px] leading-[1.2]">
+                  Stickers
+                </div>
+              </div>
+              <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+                <div className="font-['Roboto_Condensed:Regular',_sans-serif] font-normal text-[#383839] text-[32px] leading-[1.2]">
+                  Labels
+                </div>
+              </div>
+              <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+                <div className="font-['Roboto_Condensed:Regular',_sans-serif] font-normal text-[#383839] text-[32px] leading-[1.2]">
+                  Temporary Tattoos
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-full flex items-center justify-center">
+            <div className="h-px w-full border-t border-[#bdbec0]" />
+          </div>
+
+          {/* Secondary Menu Items */}
+          <div className="flex flex-col gap-2 items-start justify-center p-0">
+            <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full cursor-pointer" onClick={onAllProductsClick}>
+              <div className="font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold text-[#383839] text-[16px] leading-[1.4]">
+                All Products
+              </div>
+              <div className="overflow-clip size-4">
+                <ChevronRightIcon />
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+              <div className="font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold text-[#383839] text-[16px] leading-[1.4]">
+                Support
+              </div>
+              <div className="overflow-clip size-4">
+                <ChevronRightIcon />
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+              <div className="font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold text-[#383839] text-[16px] leading-[1.4]">
+                Business Solutions
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// All Products Menu Component
+function AllProductsMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <>
+      {/* Menu Panel - Full Screen with Solid White Background */}
+      <div 
+        className={`fixed inset-0 w-screen h-screen bg-[#ffffff] z-[9999] transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ backgroundColor: '#ffffff' }}
+      >
+        {/* Header */}
+        <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-center justify-start overflow-clip pb-0 pt-12 px-[13px] relative shrink-0 w-full">
+          <div className="basis-0 box-border content-stretch flex flex-row grow items-center justify-between min-h-px min-w-px p-0 relative shrink-0">
+            {/* Left Side - Back Button */}
+            <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 relative shrink-0">
+              <div className="overflow-clip relative shrink-0 size-6">
+                <ChevronLeftIcon onClick={onClose} />
+              </div>
+            </div>
+            {/* Center - Title */}
+            <div className="font-['Roboto_Condensed:Regular',_sans-serif] font-normal leading-[0] relative shrink-0 text-[#000000] text-[20px] text-center text-nowrap">
+              <p className="block leading-[1.2] whitespace-pre">All Products</p>
+            </div>
+            {/* Right Side - Empty for spacing */}
+            <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 shrink-0" />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-start justify-start min-h-px min-w-px pb-0 pt-6 px-6 relative shrink-0 w-full">
+          {/* Navigation Pills List */}
+          <div className="box-border content-stretch flex flex-col gap-2 items-start justify-center p-0 relative shrink-0">
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Die Cut Stickers</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Sticker Rolls</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Sticker Sheets</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Shape Stickers</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Laminated Labels</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Paper Labels</p>
+              </div>
+            </div>
+          </div>
+          <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+            <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+              <p className="block leading-[1.4] whitespace-pre">All Stickers & Labels</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 // Navigation component with scroll-based animation
 function Navigation() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAllProductsOpen, setIsAllProductsOpen] = useState(false);
+
+  const handleMenuOpen = () => {
+    setIsMenuOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setIsMenuOpen(false);
+  };
+
+  const handleAllProductsOpen = () => {
+    setIsAllProductsOpen(true);
+  };
+
+  const handleAllProductsClose = () => {
+    setIsAllProductsOpen(false);
+  };
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen || isAllProductsOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen, isAllProductsOpen]);
+
+  // Handle Escape key to close menu
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        handleMenuClose();
+      }
+      if (event.key === 'Escape' && isAllProductsOpen) {
+        handleAllProductsClose();
+      }
+    };
+
+    if (isMenuOpen || isAllProductsOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen, isAllProductsOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -292,7 +533,7 @@ function Navigation() {
               <div className="bg-[#4d4d4f] box-border content-stretch flex flex-row gap-2 items-center justify-center overflow-clip pb-2 pt-4 px-6 relative shrink-0 w-full">
         <div className="basis-0 font-['Roboto_Condensed:Regular',_sans-serif] font-normal grow leading-[0] min-h-px min-w-px relative shrink-0 text-[#ffffff] text-[16px] text-center">
           <p className="block leading-[1.4]">
-            New Pet Backing available for Matte & Glossy Labels!
+            New Pet Backing available for Labels!
           </p>
         </div>
       </div>
@@ -304,7 +545,7 @@ function Navigation() {
             {/* Left Side Icons */}
             <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 relative shrink-0">
               <div className="overflow-clip relative shrink-0 size-6">
-                <MenuIcon />
+                <MenuIcon onClick={handleMenuOpen} />
               </div>
               <div className="overflow-clip relative shrink-0 size-6">
                 <SearchIcon />
@@ -352,6 +593,12 @@ function Navigation() {
           </div>
         </div>
       </div>
+
+      {/* Hamburger Menu */}
+      <HamburgerMenu isOpen={isMenuOpen} onClose={handleMenuClose} onAllProductsClick={handleAllProductsOpen} />
+      
+      {/* All Products Menu */}
+      <AllProductsMenu isOpen={isAllProductsOpen} onClose={handleAllProductsClose} />
     </div>
   );
 }
@@ -1124,7 +1371,7 @@ export default function StickerGiantHomepage() {
       <Navigation />
       
       {/* Main Content - Add top padding to account for fixed navigation */}
-      <div className="box-border content-stretch flex flex-col gap-[37px] items-start justify-start p-0 relative w-full pt-[216px]">
+              <div className="box-border content-stretch flex flex-col gap-[37px] items-start justify-start p-0 relative w-full pt-[153px]">
         {/* Hero Section */}
         <HeroSection />
         
