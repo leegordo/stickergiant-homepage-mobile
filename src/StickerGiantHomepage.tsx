@@ -273,7 +273,7 @@ function UserIcon() {
 }
 
 // Hamburger Menu Component
-function HamburgerMenu({ isOpen, onClose, onAllProductsClick }: { isOpen: boolean; onClose: () => void; onAllProductsClick: () => void }) {
+function HamburgerMenu({ isOpen, onClose, onAllProductsClick, onSupportClick }: { isOpen: boolean; onClose: () => void; onAllProductsClick: () => void; onSupportClick: () => void }) {
   return (
     <>
       {/* Menu Panel - Full Screen with Solid White Background */}
@@ -330,7 +330,7 @@ function HamburgerMenu({ isOpen, onClose, onAllProductsClick }: { isOpen: boolea
                 <ChevronRightIcon />
               </div>
             </div>
-            <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full">
+            <div className="flex flex-row gap-2 items-center justify-start p-[8px] rounded-lg w-full cursor-pointer" onClick={onSupportClick}>
               <div className="font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold text-[#383839] text-[16px] leading-[1.4]">
                 Support
               </div>
@@ -425,12 +425,73 @@ function AllProductsMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
   );
 }
 
+// Support Menu Component
+function SupportMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <>
+      {/* Menu Panel - Full Screen with Solid White Background */}
+      <div 
+        className={`fixed inset-0 w-screen h-screen bg-[#ffffff] z-[9999] transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ backgroundColor: '#ffffff' }}
+      >
+        {/* Header */}
+        <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-center justify-start overflow-clip pb-0 pt-12 px-[13px] relative shrink-0 w-full">
+          <div className="basis-0 box-border content-stretch flex flex-row grow items-center justify-between min-h-px min-w-px p-0 relative shrink-0">
+            {/* Left Side - Back Button */}
+            <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 relative shrink-0">
+              <div className="overflow-clip relative shrink-0 size-6">
+                <ChevronLeftIcon onClick={onClose} />
+              </div>
+            </div>
+            {/* Center - Title */}
+            <div className="font-['Roboto_Condensed:Regular',_sans-serif] font-normal leading-[0] relative shrink-0 text-[#000000] text-[20px] text-center text-nowrap">
+              <p className="block leading-[1.2] whitespace-pre">Support</p>
+            </div>
+            {/* Right Side - Empty for spacing */}
+            <div className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 shrink-0" />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-start justify-start min-h-px min-w-px pb-0 pt-6 px-6 relative shrink-0 w-full">
+          {/* Navigation Pills List */}
+          <div className="box-border content-stretch flex flex-col gap-2 items-start justify-center p-0 relative shrink-0">
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Help Center</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Contact</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Artwork Setup</p>
+              </div>
+            </div>
+            <div className="box-border content-stretch flex flex-row gap-2 items-center justify-start p-[8px] relative rounded-lg shrink-0 w-full">
+              <div className="flex flex-col font-['Roboto_Condensed:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#383839] text-[16px] text-left text-nowrap">
+                <p className="block leading-[1.4] whitespace-pre">Order status</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 // Navigation component with scroll-based animation
 function Navigation() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAllProductsOpen, setIsAllProductsOpen] = useState(false);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
 
   const handleMenuOpen = () => {
     setIsMenuOpen(true);
@@ -448,9 +509,17 @@ function Navigation() {
     setIsAllProductsOpen(false);
   };
 
+  const handleSupportOpen = () => {
+    setIsSupportOpen(true);
+  };
+
+  const handleSupportClose = () => {
+    setIsSupportOpen(false);
+  };
+
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen || isAllProductsOpen) {
+    if (isMenuOpen || isAllProductsOpen || isSupportOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -460,7 +529,7 @@ function Navigation() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isMenuOpen, isAllProductsOpen]);
+  }, [isMenuOpen, isAllProductsOpen, isSupportOpen]);
 
   // Handle Escape key to close menu
   useEffect(() => {
@@ -471,16 +540,19 @@ function Navigation() {
       if (event.key === 'Escape' && isAllProductsOpen) {
         handleAllProductsClose();
       }
+      if (event.key === 'Escape' && isSupportOpen) {
+        handleSupportClose();
+      }
     };
 
-    if (isMenuOpen || isAllProductsOpen) {
+    if (isMenuOpen || isAllProductsOpen || isSupportOpen) {
       document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMenuOpen, isAllProductsOpen]);
+  }, [isMenuOpen, isAllProductsOpen, isSupportOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -595,10 +667,13 @@ function Navigation() {
       </div>
 
       {/* Hamburger Menu */}
-      <HamburgerMenu isOpen={isMenuOpen} onClose={handleMenuClose} onAllProductsClick={handleAllProductsOpen} />
+      <HamburgerMenu isOpen={isMenuOpen} onClose={handleMenuClose} onAllProductsClick={handleAllProductsOpen} onSupportClick={handleSupportOpen} />
       
       {/* All Products Menu */}
       <AllProductsMenu isOpen={isAllProductsOpen} onClose={handleAllProductsClose} />
+      
+      {/* Support Menu */}
+      <SupportMenu isOpen={isSupportOpen} onClose={handleSupportClose} />
     </div>
   );
 }
